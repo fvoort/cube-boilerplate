@@ -13,6 +13,31 @@
     {
       "name": "Primary",
       "value": "#02394A"
+    },
+    {
+      "name": "Grey",
+      "items": [
+        {
+          "name": "100",
+          "value": "#F1F1F1"
+        },
+        {
+          "name": "300",
+          "value": "#B8B8B8"
+        },
+        {
+          "name": "500",
+          "value": "#808080"
+        },
+        {
+          "name": "700",
+          "value": "#474747"
+        },
+        {
+          "name": "900",
+          "value": "#0E0E0E"
+        }
+      ]
     }
   ]
 }
