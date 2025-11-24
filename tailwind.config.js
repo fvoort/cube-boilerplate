@@ -6,7 +6,8 @@ const clampGenerator = require('./src/css-utils/clamp-generator.js');
 const tokensToTailwind = require('./src/css-utils/tokens-to-tailwind.js');
 
 // Raw design tokens
-const colorTokens = require('./src/design-tokens/colors.json');
+const colorPrimitiveTokens = require('./src/design-tokens/colors/color-primitives.json');
+const colorSemanticTokens = require('./src/design-tokens/colors/color-semantics.json');
 const fontTokens = require('./src/design-tokens/fonts.json');
 const spacingTokens = require('./src/design-tokens/spacing.json');
 const textSizeTokens = require('./src/design-tokens/text-sizes.json');
@@ -14,8 +15,13 @@ const textLeadingTokens = require('./src/design-tokens/text-leading.json');
 const textWeightTokens = require('./src/design-tokens/text-weights.json');
 const viewportTokens = require('./src/design-tokens/viewports.json');
 
+// Merge color tokens
+const allColorTokens = {
+  items: [...colorPrimitiveTokens.items, ...(colorSemanticTokens.items || [])]
+};
+
 // Process design tokens
-const colors = tokensToTailwind(colorTokens.items);
+const colors = tokensToTailwind(allColorTokens.items);
 const fontFamily = tokensToTailwind(fontTokens.items);
 const fontWeight = tokensToTailwind(textWeightTokens.items);
 const fontSize = tokensToTailwind(clampGenerator(textSizeTokens.items));
@@ -77,7 +83,7 @@ module.exports = {
   // Prevents Tailwind's core components
   blocklist: ['container'],
 
-  // Prevents Tailwind from generating that wall of empty custom properties 
+  // Prevents Tailwind from generating that wall of empty custom properties
   experimental: {
     optimizeUniversalDefaults: true
   },
